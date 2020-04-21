@@ -28,7 +28,13 @@
 
 //now we aregoing to codeup our very own linked list.
 //10-->5-->15
-
+class Node{ 
+   constructor(val){
+      this.value = val;
+      this.point = null;
+   }
+      
+}
 
 
 class LinkedList{

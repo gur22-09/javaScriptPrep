@@ -153,17 +153,105 @@ myList.printList();
  */
 
 
- class DoublyList{
-   constructor(value){
-     this.head={
-       value:value,
-       point1:null,
-       point2:null,
-     }
-     this.tail = this.head;
-     this.length = 1;
-   }
- }
+ class Node{
+  constructor(value){
+    this.value = value;
+    this.next = null;
+    this.prev = null;
+  }
+}
 
+class DoublyLinkedList {
+  constructor(value){
+    this.head = new Node(value);
+    this.tail = this.head;
+    this.length = 1;
+  }
 
+  append(value) {
+    // create new node
+    const newNode = new Node(value);
+   //make tail next point new node
+   this.tail.next = newNode;
+   //make new node prev point tail
+   newNode.prev = this.tail;
+   //declare new node as the new tail
+   this.tail = newNode;
+   //increase lenght by one
+   this.length++;
+   return this;
+  }
+
+  prepend(value) {
+    //create new node
+    const newNode = new Node(value);
+    //make head's prev point new node
+    this.head.prev = newNode;
+    //make new node's next point head
+    newNode.next = this.head;
+    //declare new node as head
+    this.head = newNode;
+    this.length ++;
+    return this;
+  }
+  traverse(index,bol = true ) {
+    let count = 0;
+    let currentNode = bol ? this.head : this.tail;
+    while (count !== index){
+      currentNode = bol ? currentNode.next : currentNode.prev;
+      count++;
+    }
+    //console.log(currentNode);
+    return currentNode;
+  }
+  insert(index,value) {
+    // param check
+    if(!index || !value || index >= this.lenght ){
+      console.error('Error');
+    }
+    const len = this.length;
+    //create new node
+    const newNode = new Node(value);
+    let before = null;
+    let after = null;
+    // figure best traverse to insert traverse to index - 1
+    if(index < len/2){
+      //traverse from head
+      before = this.traverse(index-1);
+      after = before.next;
+      //make before next point new node
+      before.next = newNode;
+      //make new node prev point before
+      newNode.prev = before
+      //make new node next point after
+      newNode.next = after;
+      //mkae after prev point new node
+      after.prev = newNode;
+      this.length ++;
+      return this;
+    }
+      //traverse from tail
+      before = this.traverse(this.length - index,false);
+      after = before.next;
+      //make before next point new node
+      before.next = newNode;
+      //make new node prev point before
+      newNode.prev = before;
+      //mkae new node next point after
+      newNode.next = after;
+      //mkae after prev point new node
+      after.prev = newNode;
+      console.log(after);
+      this.length++;
+      return this;
+  }
+}
+
+const myLinkedList = new DoublyLinkedList(5);
+myLinkedList.append(10);
+myLinkedList.append(3);
+myLinkedList.append(15);
+myLinkedList.append(20);
+myLinkedList.insert(3,12);
+//console.log(myLinkedList);
 

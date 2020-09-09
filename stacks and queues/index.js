@@ -29,60 +29,73 @@
 
 
     /**Implementing Stacks using Linked Lists */
-  
-//     class Node{
-//         constructor(val){
-//             this.value = val;
-//             this.next = null; 
-//         }
-//     }
+class Node {
+  constructor(value){
+    this.value = value;
+    this.next = null;
+  }
+}
 
-//     class Stack{
-//         constructor(){
-//            this.top = null;
-//            this.bottom = null;
-//            this.length = 0;
-            
-//         }
+class Stack {
+  constructor(){
+    this.top = null;
+    this.bottom = null;
+    this.length = 0;
+  }
+  peek() {
+    if(!this.top) return undefined;
 
-//         push(val){
-//             const node = new Node(val);
+    return this.top.value;
+  }
+  push(value){
+    const newNode = new Node(value);
+    if(this.length === 0){
+      this.top = newNode;
+      this.bottom = this.top;
+      this.length ++;
+      return;
+    }
+    newNode.next = this.top
+    this.top = newNode;
+    this.length ++;
+    
+  }
+  pop(){
+    if(!this.top.next){
+      this.bottom = null;
+    }
+    this.top = this.top.next;
+    this.length --;
 
-//             if(!this.top){
-//                 this.top = node;
-//                 this.bottom = node;
-                
+    return this.length
+  }
+  isEmpty(){
+    if(this.length === 0) return true;
 
-//             }else{
-               
-//              const hold = this.top;
-//              this.top = node;
-//              node.next = hold;             
-//             }
-//             this.length++;
-            
-//             return this;
-//         }
-//         pop(){
-//             if(!this.top) return null;
-//             if(this.length ===1) this.bottom = null;
+    return false;
+  }
+}
 
-//             const top = this.top.value;
-//             this.top = this.top.next;
-//             this.length--;
+const myStack = new Stack();
 
-//             return top;
-//         }
-        
-//     }
+myStack.push('Discord');
+myStack.push('Udemy');
+myStack.push('google');
+myStack.push('amazon');
+myStack.push('facebook');
+myStack.push('e-beta');
+myStack.pop();
+myStack.pop();
+myStack.pop();
+myStack.pop();
+myStack.pop();
+myStack.pop();
+console.log(myStack);
 
-//     const myStack = new Stack();
-//     myStack.push(()=>console.log(1));
-//     myStack.push(()=>console.log(11));
-//     myStack.push(()=>console.log(121));
-//     console.log(myStack.pop());
-//    // myStack.push(5);
-//     console.log(myStack);
+//Discord
+//Udemy
+//google
+
 
 /*                                    
   We just implemented stacks using linked lists now we are going to implement stacks using arrays.

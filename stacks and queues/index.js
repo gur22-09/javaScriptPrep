@@ -137,5 +137,8 @@ class Stack{
 const myStack = new Stack();
 myStack.push('google');
 myStack.push('udemy');
-myStack.push('pornHub');
+myStack.push('youtube');
 console.log(myStack);
+
+
+//implementing queues using stacks

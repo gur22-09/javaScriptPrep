@@ -12,7 +12,7 @@ function bubbleSort(arr) {
   const len = arr.length;
 
   for(let i=0; i< len; i++){
-    for(let j=0; j<len - i; j++){
+    for(let j=0; j<len - i -1; j++){
       if(arr[j] > arr[j+1]){
         let temp = arr[j+1];
         arr[j+1] = arr[j];
@@ -21,7 +21,7 @@ function bubbleSort(arr) {
     }
   }
 }
-/* note here for the second loop we dont want to iterate over entire length cuz each time some big element will always be there so we do len - i */
+/* note here for the second loop we dont want to iterate over entire length cuz each time some big element will always be there so we do len - i -1  */
 const test = [99,44,6,2,1,5,63,87,283,4,0];
 
 bubbleSort(test);
